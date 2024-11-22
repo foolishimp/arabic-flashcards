@@ -6,23 +6,6 @@
   font-family: Arial, sans-serif;
 }
 
-.options-selector {
-  margin: 20px 0;
-  padding: 10px;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.options-selector label {
-  margin: 0 15px;
-  cursor: pointer;
-}
-
-.options-selector input[type="radio"] {
-  margin-right: 5px;
-}
-
 .flashcard {
   background: white;
   border-radius: 10px;
@@ -55,11 +38,6 @@
   gap: 10px;
   max-width: 500px;
   margin: 0 auto;
-}
-
-.options.all-options {
-  grid-template-columns: repeat(4, 1fr);
-  max-width: 100%;
 }
 
 .options button {
@@ -117,32 +95,4 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 40px;
   margin: 20px 0;
-}
-
-.sound-button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 10px;
-  margin-left: 10px;
-  vertical-align: middle;
-  transition: transform 0.2s;
-  display: inline-block;
-}
-
-.sound-button:hover {
-  transform: scale(1.1);
-}
-
-.sound-button:active {
-  transform: scale(0.95);
-}
-
-/* Ensure the Arabic letter and sound button are aligned */
-.arabic-letter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }

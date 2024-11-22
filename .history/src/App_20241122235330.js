@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 const letters = [
@@ -39,45 +39,15 @@ function App() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [optionsCount, setOptionsCount] = useState(4);
   const [currentOptions, setCurrentOptions] = useState(getRandomOptions(letters[0].name, 4));
-  const [utterance, setUtterance] = useState(null);
-
-  useEffect(() => {
-    const synth = window.speechSynthesis;
-    const u = new SpeechSynthesisUtterance();
-    u.lang = 'ar-SA';
-    u.rate = 0.8; // Slightly slower
-    u.pitch = 1;
-
-    // Try to find an Arabic voice
-    synth.addEventListener('voiceschanged', () => {
-      const voices = synth.getVoices();
-      const arabicVoice = voices.find(voice => voice.lang.includes('ar'));
-      if (arabicVoice) {
-        u.voice = arabicVoice;
-      }
-    });
-
-    setUtterance(u);
-
-    return () => {
-      synth.cancel();
-    };
-  }, []);
-
-  const playSound = () => {
-    if (utterance) {
-      const synth = window.speechSynthesis;
-      synth.cancel(); // Cancel any ongoing speech
-      utterance.text = letters[currentCardIndex].arabic;
-      synth.speak(utterance);
-    }
-  };
 
   function getRandomOptions(correctAnswer, count) {
     const options = new Set([correctAnswer]);
+    
+    // If count is -1, show all options
     if (count === -1) {
       return letters.map(letter => letter.name);
     }
+    
     while (options.size < count) {
       const randomLetter = letters[Math.floor(Math.random() * letters.length)].name;
       options.add(randomLetter);
@@ -87,7 +57,9 @@ function App() {
 
   const handleOptionClick = (option) => {
     if (selectedOption !== null) return;
+    
     setSelectedOption(option);
+    
     if (option === letters[currentCardIndex].name) {
       setScore(score + 1);
     }
@@ -160,9 +132,6 @@ function App() {
       <div className="flashcard">
         <div className="arabic-letter">
           {letters[currentCardIndex].arabic}
-          <button className="sound-button" onClick={playSound} title="Play Sound">
-            🔊
-          </button>
           {selectedOption && (
             <div className="sound-hint">
               ({letters[currentCardIndex].sound})

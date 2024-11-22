@@ -118,31 +118,3 @@
   padding: 40px;
   margin: 20px 0;
 }
-
-.sound-button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 10px;
-  margin-left: 10px;
-  vertical-align: middle;
-  transition: transform 0.2s;
-  display: inline-block;
-}
-
-.sound-button:hover {
-  transform: scale(1.1);
-}
-
-.sound-button:active {
-  transform: scale(0.95);
-}
-
-/* Ensure the Arabic letter and sound button are aligned */
-.arabic-letter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
